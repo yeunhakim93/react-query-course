@@ -40,6 +40,9 @@ export default function IssuesList({ labels, status }) {
           }}
         ></input>
       </form>
+      <h2>
+        Issues List {issuesQuery.fetchStatus === "fetching" ? <Loader /> : null}
+      </h2>
       {issuesQuery.isLoading ? (
         <p>Loading...</p>
       ) : searchQuery.fetchStatus === "idle" &&
