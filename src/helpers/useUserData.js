@@ -1,8 +1,13 @@
 import { useQuery } from "react-query";
 
 export function useUsersData() {
-  const usersData = useQuery(["users"], () =>
-    fetch("/api/users").then((res) => res.json())
+  const usersData = useQuery(
+    ["users"],
+    ({ signal }) =>
+      fetch(`/api/users/${userId}`, { signal }).then((res) => res.json()),
+    {
+      staleTime: 1000 * 60 * 5,
+    }
   );
   return usersData;
 }
